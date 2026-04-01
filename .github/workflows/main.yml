@@ -1,0 +1,22 @@
+# Имя workflow
+name: Main Taski Workflow
+
+# Триггеры: запуск при пуше в ветку main
+on:
+  push:
+    branches:
+      - main
+
+# Задачи
+jobs:
+  # Единственная задача – склонировать код и вывести дерево файлов
+  checkout-and-print-tree:
+    runs-on: ubuntu-latest
+    steps:
+      # Используем готовое действие для клонирования репозитория
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      # Выполняем команду tree для вывода структуры проекта
+      - name: Print project tree
+        run: tree .
